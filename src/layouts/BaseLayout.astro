@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -19,12 +20,24 @@ const { title, description } = Astro.props;
   <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonicalURL.href} />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
 
   <!-- Open Graph -->
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content={canonicalURL.href} />
+  <meta property="og:image" content={new URL('/images/tim-and-katie.jpg', Astro.site).href} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL('/images/tim-and-katie.jpg', Astro.site).href} />
 
   <!-- Fonts: DM Serif Display + DM Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

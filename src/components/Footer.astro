@@ -1,0 +1,39 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-slate-900 text-white py-12 px-4">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+    <!-- Brand -->
+    <div>
+      <p class="font-serif text-xl mb-2">Graves Properties</p>
+      <p class="text-slate-400 text-sm">Renovations, Flips & Long-Term Rentals across New Hampshire.</p>
+    </div>
+
+    <!-- Links -->
+    <div>
+      <p class="font-semibold text-sm text-slate-300 mb-3 uppercase tracking-wider">Pages</p>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/" class="text-slate-400 hover:text-white no-underline transition-colors">Home</a></li>
+        <li><a href="/rentals" class="text-slate-400 hover:text-white no-underline transition-colors">Available Rentals</a></li>
+        <li><a href="/our-work" class="text-slate-400 hover:text-white no-underline transition-colors">Our Work</a></li>
+        <li><a href="/about" class="text-slate-400 hover:text-white no-underline transition-colors">About</a></li>
+        <li><a href="https://bestnhrealty.com" class="text-slate-400 hover:text-white no-underline transition-colors">Sell Your Home &rarr; Best NH Realty</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <p class="font-semibold text-sm text-slate-300 mb-3 uppercase tracking-wider">Contact</p>
+      <div class="space-y-2 text-sm">
+        <a href="tel:+16037852811" class="block text-slate-400 hover:text-white no-underline transition-colors">603-785-2811</a>
+        <a href="mailto:tim@nhgraves.com" class="block text-slate-400 hover:text-white no-underline transition-colors">tim@nhgraves.com</a>
+        <p class="text-slate-500">Based in Stratham, NH</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-500">
+    <p>&copy; {year} Graves Properties. All rights reserved.</p>
+  </div>
+</footer>

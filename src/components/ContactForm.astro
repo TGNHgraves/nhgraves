@@ -1,0 +1,98 @@
+---
+interface Props {
+  topic?: 'renting' | 'selling' | 'renovation' | 'other' | '';
+}
+
+const { topic = '' } = Astro.props;
+const inputClass =
+  'w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-base focus:outline-none focus:ring-2 focus:ring-sky-600';
+const labelClass = 'block text-sm font-semibold text-slate-700 mb-1';
+---
+
+<div class="text-left">
+  <form id="contact-form" class="bg-white text-slate-900 rounded-2xl p-6 md:p-8 border border-slate-200 grid gap-4">
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div>
+        <label for="contact-name" class={labelClass}>Your name *</label>
+        <input id="contact-name" name="name" type="text" required autocomplete="name" maxlength="80" class={inputClass} />
+      </div>
+      <div>
+        <label for="contact-email" class={labelClass}>Email *</label>
+        <input id="contact-email" name="email" type="email" required autocomplete="email" maxlength="120" class={inputClass} />
+      </div>
+      <div>
+        <label for="contact-phone" class={labelClass}>Phone <span class="font-normal text-slate-500">(optional)</span></label>
+        <input id="contact-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" class={inputClass} />
+      </div>
+      <div>
+        <label for="contact-topic" class={labelClass}>What's this about?</label>
+        <select id="contact-topic" name="topic" class={inputClass}>
+          <option value="" selected={topic === ''}>Choose one (optional)</option>
+          <option value="renting" selected={topic === 'renting'}>Renting a home</option>
+          <option value="selling" selected={topic === 'selling'}>Selling a property</option>
+          <option value="renovation" selected={topic === 'renovation'}>A renovation project</option>
+          <option value="other" selected={topic === 'other'}>Something else</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <label for="contact-message" class={labelClass}>Message *</label>
+      <textarea id="contact-message" name="message" rows="4" required maxlength="2000" class={inputClass}></textarea>
+    </div>
+    <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;">
+      <label for="contact-company">Company</label>
+      <input id="contact-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+      <button type="submit"
+        class="bg-sky-700 hover:bg-sky-800 disabled:opacity-60 text-white font-semibold px-8 py-3.5 rounded-xl transition-colors">
+        Send Message
+      </button>
+      <p id="contact-error" role="alert" class="text-red-700 text-sm" hidden></p>
+    </div>
+  </form>
+
+  <div id="contact-success" role="status" class="bg-white text-slate-900 rounded-2xl p-6 md:p-8 border border-slate-200" hidden>
+    <p class="font-serif text-xl mb-2">Message sent</p>
+    <p class="text-slate-600">Thanks, <span data-first-name></span>. Tim will get back to you shortly.</p>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const success = document.getElementById('contact-success');
+  const errorEl = document.getElementById('contact-error');
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+    data.source_page = location.pathname;
+
+    if (errorEl) errorEl.hidden = true;
+    button.disabled = true;
+    button.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(out.error || "We couldn't send your message.");
+
+      const firstName = success?.querySelector('[data-first-name]');
+      if (firstName) firstName.textContent = (data.name || '').trim().split(/\s+/)[0] || 'there';
+      form.hidden = true;
+      if (success) success.hidden = false;
+    } catch (err) {
+      if (errorEl) {
+        errorEl.textContent = `${(err as Error).message} Please call or text Tim at 603-785-2811.`;
+        errorEl.hidden = false;
+      }
+      button.disabled = false;
+      button.textContent = 'Send Message';
+    }
+  });
+</script>

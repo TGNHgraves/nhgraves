@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
 ---
 
 <BaseLayout
@@ -32,12 +33,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2 class="font-serif text-2xl text-slate-900 mb-3">No Listings Available</h2>
         <p class="text-gray-500 max-w-md mx-auto mb-8">
           We don't have any rentals available right now — check back soon!
-          We're always working on new properties.
+          We're always working on new properties. Tell us what you're looking for
+          and we'll reach out when something opens up.
         </p>
-        <a href="tel:+16037852811"
-           class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-semibold px-6 py-3 rounded-xl no-underline transition-colors">
-          Call About Upcoming Rentals
-        </a>
+        <div class="max-w-2xl mx-auto">
+          <ContactForm topic="renting" />
+        </div>
+        <p class="text-gray-500 text-sm mt-6">
+          Or call Tim at <a href="tel:+16037852811" class="text-sky-700 font-semibold">603-785-2811</a>
+        </p>
       </div>
 
       <!-- Placeholder cards (hidden, ready for future use) -->

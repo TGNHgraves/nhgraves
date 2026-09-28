@@ -30,18 +30,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2 class="font-serif text-2xl text-slate-900 mb-2">Seacoast Colonial — Full Gut Renovation</h2>
         <p class="text-gray-500 text-sm mb-6">Complete structural and cosmetic renovation. New framing, flooring, kitchen, and bathrooms.</p>
         <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <div class="bg-slate-200 rounded-xl aspect-[4/3] flex items-center justify-center mb-2">
-              <p class="text-slate-400 text-sm">Before photo</p>
-            </div>
-            <p class="text-xs text-gray-400 uppercase tracking-wider text-center">Before</p>
-          </div>
-          <div>
-            <div class="bg-slate-100 rounded-xl aspect-[4/3] flex items-center justify-center mb-2 border-2 border-sky-200">
-              <p class="text-slate-400 text-sm">After photo</p>
-            </div>
-            <p class="text-xs text-sky-600 uppercase tracking-wider text-center font-semibold">After</p>
-          </div>
+          <figure>
+            <img src="/images/our-work/seacoast-colonial-before-living-room.webp" width="1200" height="900"
+                 alt="Before: the living room wall, with a small pass-through into the old kitchen"
+                 loading="lazy" decoding="async" class="rounded-xl w-full h-auto mb-2" />
+            <figcaption class="text-xs text-gray-400 uppercase tracking-wider text-center">Before · Living room</figcaption>
+          </figure>
+          <figure>
+            <img src="/images/our-work/seacoast-colonial-before-kitchen.webp" width="1200" height="900"
+                 alt="Before: the old galley kitchen with orange walls and dated cabinets"
+                 loading="lazy" decoding="async" class="rounded-xl w-full h-auto mb-2" />
+            <figcaption class="text-xs text-gray-400 uppercase tracking-wider text-center">Before · Kitchen</figcaption>
+          </figure>
+          <figure class="md:col-span-2">
+            <img src="/images/our-work/seacoast-colonial-after-kitchen.webp" width="1440" height="1152"
+                 alt="After: the wall is gone, opening onto a new kitchen with white cabinets, stone counters, stainless appliances and an island, with our dog in front"
+                 loading="lazy" decoding="async" class="rounded-xl w-full h-auto mb-2 border-2 border-sky-200" />
+            <figcaption class="text-xs text-sky-600 uppercase tracking-wider text-center font-semibold">After · Wall removed, new open kitchen</figcaption>
+          </figure>
         </div>
       </div>
 

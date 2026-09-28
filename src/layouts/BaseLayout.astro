@@ -10,6 +10,18 @@ interface Props {
 
 const { title, description } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: 'Graves Properties',
+  url: 'https://nhgraves.com',
+  telephone: '+16037852811',
+  email: 'tim@nhgraves.com',
+  image: new URL('/images/tim-and-katie.jpg', Astro.site).href,
+  address: { '@type': 'PostalAddress', addressLocality: 'Stratham', addressRegion: 'NH', addressCountry: 'US' },
+  areaServed: { '@type': 'State', name: 'New Hampshire' },
+};
 ---
 
 <!DOCTYPE html>
@@ -39,6 +51,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={new URL('/images/tim-and-katie.jpg', Astro.site).href} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(business)} />
 
   <!-- Fonts: Cinzel (headings) + DM Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

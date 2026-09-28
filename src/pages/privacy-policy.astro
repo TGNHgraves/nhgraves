@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdated = 'September 2026';
+const h2 = 'font-serif text-2xl text-slate-900 mb-3';
+const list = 'list-disc pl-6 mt-3 space-y-1';
+const link = 'text-sky-700 hover:text-sky-800 underline';
+---
+
+<BaseLayout
+  title="Privacy Policy | Graves Properties"
+  description="How Graves Properties handles what you send through the nhgraves.com contact form: what we collect, how we use it, and your choices."
+>
+
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-3xl mx-auto">
+
+      <h1 class="font-serif text-4xl text-slate-900 mb-2">Privacy Policy</h1>
+      <p class="text-sm text-slate-500 mb-10">Last updated: {lastUpdated}</p>
+
+      <div class="space-y-8 text-gray-700 leading-relaxed">
+
+        <section>
+          <h2 class={h2}>Overview</h2>
+          <p>Graves Properties ("we," "us," or "our") runs the website nhgraves.com. This policy explains what information we collect through the site, how we use it, and the choices you have. By sending us a message through the site, you agree to this policy.</p>
+        </section>
+
+        <section>
+          <h2 class={h2}>Information We Collect</h2>
+          <p>When you send a message through our contact form, we collect:</p>
+          <ul class={list}>
+            <li>Your name</li>
+            <li>Your email address</li>
+            <li>Your phone number, if you give it (it's optional)</li>
+            <li>The topic you choose (renting, selling, a renovation project, or something else)</li>
+            <li>Your message</li>
+            <li>The page on our site you sent it from, and the date and time you sent it</li>
+          </ul>
+          <p class="mt-3">We don't ask for payment information, Social Security numbers, or financial account details through this website.</p>
+        </section>
+
+        <section>
+          <h2 class={h2}>How We Use Your Information</h2>
+          <p>We use what you send us only to:</p>
+          <ul class={list}>
+            <li>Reply to your message, by email or by phone if you gave us a number</li>
+            <li>Keep records of the messages we receive</li>
+          </ul>
+          <p class="mt-3">There's no text-message program on this site: sending a message doesn't sign you up for texts or marketing of any kind.</p>
+        </section>
+
+        <section>
+          <h2 class={h2}>How We Store and Share Your Information</h2>
+          <p>When you send the form, automation software routes your message to our email and adds it to a Google Sheet we use to keep track of messages. The companies behind these tools, and the company that hosts this website, handle your information only so their services work for us.</p>
+          <p class="mt-3">We do not sell, rent, or trade your personal information. We do not share it with other real estate companies, marketers, or data brokers.</p>
+        </section>
+
+        <section>
+          <h2 class={h2}>Cookies and Analytics</h2>
+          <p>This site doesn't use cookies, analytics, or advertising trackers. Like any website, our host receives basic technical details, such as your IP address and browser type, when you load a page, and our pages load their fonts from Google Fonts, which receives the same kind of details. We don't use this information to identify you.</p>
+          <p class="mt-3">We may add analytics later to see which pages visitors find useful. If we do, we'll update this policy.</p>
+        </section>
+
+        <section>
+          <h2 class={h2}>Your Rights</h2>
+          <p>You can ask us to:</p>
+          <ul class={list}>
+            <li>Send you a copy of the personal information we have about you</li>
+            <li>Correct anything that's inaccurate</li>
+            <li>Delete your information from our records</li>
+            <li>Stop contacting you</li>
+          </ul>
+          <p class="mt-3">To make any of these requests, contact us using the details below.</p>
+        </section>
+
+        <section>
+          <h2 class={h2}>Data Retention</h2>
+          <p>We keep your message and contact details for as long as we need them to reply to you and keep our business records, typically for as long as we're working together and a reasonable time afterward. You can ask us to delete them at any time, unless we need to keep them for legal or tax reasons.</p>
+        </section>
+
+        <section>
+          <h2 class={h2}>Changes to This Policy</h2>
+          <p>We may update this policy from time to time, for example if we add analytics to the site. When we do, we'll change the "Last updated" date at the top of this page.</p>
+        </section>
+
+        <section>
+          <h2 class={h2}>Contact Us</h2>
+          <p>If you have questions about this policy or want to make a request, contact us:</p>
+          <div class="mt-3 bg-slate-50 rounded-xl p-6 border border-slate-100">
+            <p class="font-semibold text-slate-900">Graves Properties</p>
+            <p class="mt-1">Stratham, New Hampshire</p>
+            <p class="mt-1">Phone: <a href="tel:+16037852811" class={link}>603-785-2811</a></p>
+            <p class="mt-1">Email: <a href="mailto:tim@nhgraves.com" class={link}>tim@nhgraves.com</a></p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

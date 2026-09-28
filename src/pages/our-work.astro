@@ -1,5 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Photos live in public/images/our-work/. To add a project's photos, drop the files there
+// (named like seacoast-colonial-before-kitchen.webp) and list them under that project.
+// "before" photos sit side by side; a photo marked wide spans the full width.
+const projects = [
+  {
+    title: 'Seacoast Colonial — Full Gut Renovation',
+    description: 'Complete structural and cosmetic renovation. New framing, flooring, kitchen, and bathrooms.',
+    photos: [
+      { file: 'seacoast-colonial-before-living-room.webp', width: 1200, height: 900, stage: 'before', caption: 'Before · Living room',
+        alt: 'Before: the living room wall, with a small pass-through into the old kitchen' },
+      { file: 'seacoast-colonial-before-kitchen.webp', width: 1200, height: 900, stage: 'before', caption: 'Before · Kitchen',
+        alt: 'Before: the old galley kitchen with orange walls and dated cabinets' },
+      { file: 'seacoast-colonial-after-kitchen.webp', width: 1440, height: 1152, stage: 'after', wide: true, caption: 'After · Wall removed, new open kitchen',
+        alt: 'After: the wall is gone, opening onto a new kitchen with white cabinets, stone counters, stainless appliances and an island, with our dog in front' },
+    ],
+  },
+  {
+    title: 'Manchester Duplex — Flip to Rental',
+    description: 'Converted a neglected duplex into two quality long-term rental units. New kitchens, baths, and mechanicals throughout.',
+    photos: [],
+  },
+  {
+    title: 'Keene Ranch — Quick Turnaround Flip',
+    description: 'Cosmetic flip with kitchen remodel, new flooring, and full interior paint. Listed and sold within 30 days of completion.',
+    photos: [],
+  },
+];
 ---
 
 <BaseLayout
@@ -24,77 +52,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- GALLERY -->
   <section class="py-20 px-4 bg-white">
     <div class="max-w-5xl mx-auto space-y-16">
-
-      <!-- Project 1 -->
-      <div>
-        <h2 class="font-serif text-2xl text-slate-900 mb-2">Seacoast Colonial — Full Gut Renovation</h2>
-        <p class="text-gray-500 text-sm mb-6">Complete structural and cosmetic renovation. New framing, flooring, kitchen, and bathrooms.</p>
-        <div class="grid md:grid-cols-2 gap-4">
-          <figure>
-            <img src="/images/our-work/seacoast-colonial-before-living-room.webp" width="1200" height="900"
-                 alt="Before: the living room wall, with a small pass-through into the old kitchen"
-                 loading="lazy" decoding="async" class="rounded-xl w-full h-auto mb-2" />
-            <figcaption class="text-xs text-gray-400 uppercase tracking-wider text-center">Before · Living room</figcaption>
-          </figure>
-          <figure>
-            <img src="/images/our-work/seacoast-colonial-before-kitchen.webp" width="1200" height="900"
-                 alt="Before: the old galley kitchen with orange walls and dated cabinets"
-                 loading="lazy" decoding="async" class="rounded-xl w-full h-auto mb-2" />
-            <figcaption class="text-xs text-gray-400 uppercase tracking-wider text-center">Before · Kitchen</figcaption>
-          </figure>
-          <figure class="md:col-span-2">
-            <img src="/images/our-work/seacoast-colonial-after-kitchen.webp" width="1440" height="1152"
-                 alt="After: the wall is gone, opening onto a new kitchen with white cabinets, stone counters, stainless appliances and an island, with our dog in front"
-                 loading="lazy" decoding="async" class="rounded-xl w-full h-auto mb-2 border-2 border-sky-200" />
-            <figcaption class="text-xs text-sky-600 uppercase tracking-wider text-center font-semibold">After · Wall removed, new open kitchen</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <hr class="border-slate-100" />
-
-      <!-- Project 2 -->
-      <div>
-        <h2 class="font-serif text-2xl text-slate-900 mb-2">Manchester Duplex — Flip to Rental</h2>
-        <p class="text-gray-500 text-sm mb-6">Converted a neglected duplex into two quality long-term rental units. New kitchens, baths, and mechanicals throughout.</p>
-        <div class="grid md:grid-cols-2 gap-4">
+      {projects.map((project, i) => (
+        <>
+          {i > 0 && <hr class="border-slate-100" />}
           <div>
-            <div class="bg-slate-200 rounded-xl aspect-[4/3] flex items-center justify-center mb-2">
-              <p class="text-slate-400 text-sm">Before photo</p>
-            </div>
-            <p class="text-xs text-gray-400 uppercase tracking-wider text-center">Before</p>
+            <h2 class="font-serif text-2xl text-slate-900 mb-2">{project.title}</h2>
+            <p class:list={['text-gray-500 text-sm', project.photos.length > 0 && 'mb-6']}>{project.description}</p>
+            {project.photos.length > 0 && (
+              <div class="grid md:grid-cols-2 gap-4">
+                {project.photos.map((photo) => (
+                  <figure class:list={[photo.wide && 'md:col-span-2']}>
+                    <img src={`/images/our-work/${photo.file}`} width={photo.width} height={photo.height} alt={photo.alt}
+                         loading="lazy" decoding="async"
+                         class:list={['rounded-xl w-full h-auto mb-2', photo.stage === 'after' && 'border-2 border-sky-200']} />
+                    <figcaption class:list={['text-xs uppercase tracking-wider text-center',
+                                             photo.stage === 'after' ? 'text-sky-700 font-semibold' : 'text-slate-500']}>
+                      {photo.caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            )}
           </div>
-          <div>
-            <div class="bg-slate-100 rounded-xl aspect-[4/3] flex items-center justify-center mb-2 border-2 border-sky-200">
-              <p class="text-slate-400 text-sm">After photo</p>
-            </div>
-            <p class="text-xs text-sky-600 uppercase tracking-wider text-center font-semibold">After</p>
-          </div>
-        </div>
-      </div>
-
-      <hr class="border-slate-100" />
-
-      <!-- Project 3 -->
-      <div>
-        <h2 class="font-serif text-2xl text-slate-900 mb-2">Keene Ranch — Quick Turnaround Flip</h2>
-        <p class="text-gray-500 text-sm mb-6">Cosmetic flip with kitchen remodel, new flooring, and full interior paint. Listed and sold within 30 days of completion.</p>
-        <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <div class="bg-slate-200 rounded-xl aspect-[4/3] flex items-center justify-center mb-2">
-              <p class="text-slate-400 text-sm">Before photo</p>
-            </div>
-            <p class="text-xs text-gray-400 uppercase tracking-wider text-center">Before</p>
-          </div>
-          <div>
-            <div class="bg-slate-100 rounded-xl aspect-[4/3] flex items-center justify-center mb-2 border-2 border-sky-200">
-              <p class="text-slate-400 text-sm">After photo</p>
-            </div>
-            <p class="text-xs text-sky-600 uppercase tracking-wider text-center font-semibold">After</p>
-          </div>
-        </div>
-      </div>
-
+        </>
+      ))}
     </div>
   </section>
 

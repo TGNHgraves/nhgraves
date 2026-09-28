@@ -17,8 +17,8 @@ function isActive(linkHref: string) {
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
   <div class="max-w-6xl mx-auto flex items-center justify-between px-4" style="padding-top:2px;padding-bottom:2px;">
     <!-- Logo -->
-    <a href="/" class="no-underline">
-      <img src="/images/graves-logo.png" alt="Graves Properties" style="height: 120px;" class="w-auto" />
+    <a href="/" class="no-underline shrink-0">
+      <img src="/images/graves-logo.png" alt="Graves Properties" width="960" height="720" class="h-12 md:h-[120px] w-auto" />
     </a>
 
     <!-- Desktop Nav -->
@@ -38,7 +38,8 @@ function isActive(linkHref: string) {
     <div class="flex items-center">
       <a href="https://bestnhrealty.com"
          class="bg-slate-800 hover:bg-slate-900 text-white text-sm font-semibold px-4 py-2 rounded-lg no-underline transition-colors whitespace-nowrap">
-        Sell Your Home on Our Sister Site &rarr;
+        <span class="sm:hidden">Sell Your Home &rarr;</span>
+        <span class="hidden sm:inline">Sell Your Home on Our Sister Site &rarr;</span>
       </a>
     </div>
 
